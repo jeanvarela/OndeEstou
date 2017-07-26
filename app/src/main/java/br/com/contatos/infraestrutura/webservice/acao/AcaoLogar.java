@@ -51,13 +51,7 @@ public class AcaoLogar extends AsyncTask<Call<AccessTokenRetorno>,Void,Response<
         if (response.isSuccessful()){
             logarHandler.retornaDadosLogin(response.body(),email);
         }else{
-            try{
-                erroHandler.erro(ErrorUtils.parseError(response.errorBody().string()));
-            }  catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            erroHandler.erro("E-mail e/ou Senha inválidos");
         }
     }
 }

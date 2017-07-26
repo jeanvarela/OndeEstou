@@ -1,4 +1,4 @@
-package br.com.contatos.controlador;
+package br.com.contatos.controlador.usuario;
 
 import br.com.contatos.modelo.entidade.usuario.Usuario;
 

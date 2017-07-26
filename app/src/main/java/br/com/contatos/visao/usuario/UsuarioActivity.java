@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 import br.com.contatos.R;
 
-import br.com.contatos.controlador.ControladorUsuario;
-import br.com.contatos.controlador.IControladorUsuario;
+import br.com.contatos.controlador.usuario.ControladorUsuario;
+import br.com.contatos.controlador.usuario.IControladorUsuario;
 import br.com.contatos.infraestrutura.util.Mask;
 import br.com.contatos.infraestrutura.util.MessageUtil;
 import br.com.contatos.infraestrutura.util.UtilValidacao;

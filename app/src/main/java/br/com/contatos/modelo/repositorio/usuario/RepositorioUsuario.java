@@ -47,7 +47,6 @@ public class RepositorioUsuario extends RepositorioBasico implements IRepositori
 
     @Override
     public void atualizaToken(long idUsuario, String token) {
-
         String sql = "UPDATE " + UsuarioSQLHelper.TABELA_USUARIO + " SET " +
                                  UsuarioSQLHelper.COLUNA_ACCESS_TOKEN + " = ? "  + " where " +
                                  UsuarioSQLHelper.COLUNA_ID  + " = ? ";
@@ -55,6 +54,7 @@ public class RepositorioUsuario extends RepositorioBasico implements IRepositori
 
         Cursor cursor = getWriteDatabase().rawQuery(sql,argumentos);
         cursor.moveToFirst();
+        cursor.close();
     }
 
     private ContentValues criaContentValues(Usuario usuario){

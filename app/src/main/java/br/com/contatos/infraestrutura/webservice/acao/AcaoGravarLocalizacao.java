@@ -18,12 +18,12 @@ import retrofit2.Response;
  * Created by jean on 26/07/2017.
  */
 
-public class AcaoGravarOcorrencia extends AsyncTask<Call<OcorrenciaRetorno>,Void,Response<OcorrenciaRetorno>> {
+public class AcaoGravarLocalizacao extends AsyncTask<Call<OcorrenciaRetorno>,Void,Response<OcorrenciaRetorno>> {
 
     private SucessoHandler sucessoHandler;
     private ErroHandler    erroHandler;
 
-    public AcaoGravarOcorrencia(SucessoHandler sucessoHandler, ErroHandler erroHandler) {
+    public AcaoGravarLocalizacao(SucessoHandler sucessoHandler, ErroHandler erroHandler) {
         this.sucessoHandler = sucessoHandler;
         this.erroHandler = erroHandler;
     }
@@ -47,7 +47,13 @@ public class AcaoGravarOcorrencia extends AsyncTask<Call<OcorrenciaRetorno>,Void
         if (response.isSuccessful()){
             sucessoHandler.sucesso("Localização enviada com sucesso");
         }else{
-            erroHandler.erro("E-mail e/ou Senha inválidos");
+            try{
+                erroHandler.erro(ErrorUtils.parseError(response.errorBody().string()));
+            }  catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

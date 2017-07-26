@@ -1,7 +1,7 @@
 package br.com.contatos.infraestrutura.webservice.resource;
 
 import br.com.contatos.infraestrutura.webservice.retorno.OcorrenciaRetorno;
-import br.com.contatos.modelo.entidade.ocorrencia.Ocorrencia;
+import br.com.contatos.modelo.entidade.localizacao.Localizacao;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -13,5 +13,5 @@ import retrofit2.http.POST;
 public interface OcorrenciaService {
 
     @POST("createocurrency")
-    Call<OcorrenciaRetorno> enviarOcorrencia(@Body Ocorrencia ocorrencia);
+    Call<OcorrenciaRetorno> enviarOcorrencia(@Body Localizacao ocorrencia);
 }

@@ -13,13 +13,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.contatos.R;
+import br.com.contatos.controlador.localizacao.ControladorLocalizacao;
+import br.com.contatos.controlador.localizacao.IControladorLocalizacao;
+import br.com.contatos.infraestrutura.util.Constantes;
+import br.com.contatos.modelo.entidade.localizacao.Localizacao;
 import br.com.contatos.visao.localizacao.LocalizaActivity;
+import br.com.contatos.visao.localizacao.LocalizacaoAdapter;
 import br.com.contatos.visao.login.LoginActivity;
 
 public class PrincipalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private long   idUsuario;
+    private String token;
+
+    private LocalizacaoAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +51,20 @@ public class PrincipalActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Intent intent = getIntent();
+        idUsuario = intent.getLongExtra(Constantes.ID_USUARIO_PARAMETRO,-1);
+        token = intent.getStringExtra(Constantes.ID_TOKEN_PARAMETRO);
+
+        ListView lista = (ListView)findViewById(R.id.lista);
+        
+        adapter = new LocalizacaoAdapter(this,atualizaLista());
+        lista.setAdapter(adapter);
+    }
+
+    private List<Localizacao> atualizaLista(){
+        IControladorLocalizacao controladorLocalizacao = new ControladorLocalizacao(this);
+        return controladorLocalizacao.recuperaListaLocalizacoes(idUsuario);
     }
 
     @Override
@@ -79,6 +108,8 @@ public class PrincipalActivity extends AppCompatActivity
 
     private void chamaTelaInserirLocalizacao(){
         Intent intent = new Intent(this, LocalizaActivity.class);
+        intent.putExtra(Constantes.ID_USUARIO_PARAMETRO,idUsuario);
+        intent.putExtra(Constantes.ID_TOKEN_PARAMETRO,token);
         startActivity(intent);
     }
 

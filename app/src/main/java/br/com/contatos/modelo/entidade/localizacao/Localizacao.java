@@ -1,15 +1,24 @@
-package br.com.contatos.modelo.entidade.ocorrencia;
+package br.com.contatos.modelo.entidade.localizacao;
 
 /**
  * Created by jean on 26/07/2017.
  */
 
-public class Ocorrencia {
+public class Localizacao {
 
+    private long   id;
     private long   id_menber;
     private String ocurrency;
     private double latitude;
     private double logitude;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getId_menber() {
         return id_menber;

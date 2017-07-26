@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -23,15 +24,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.contatos.R;
+import br.com.contatos.controlador.localizacao.ControladorLocalizacao;
+import br.com.contatos.controlador.localizacao.IControladorLocalizacao;
 import br.com.contatos.infraestrutura.util.Constantes;
 import br.com.contatos.infraestrutura.util.MessageUtil;
 import br.com.contatos.infraestrutura.webservice.ServiceGenerator;
-import br.com.contatos.infraestrutura.webservice.acao.AcaoGravarOcorrencia;
+import br.com.contatos.infraestrutura.webservice.acao.AcaoGravarLocalizacao;
 import br.com.contatos.infraestrutura.webservice.interfaces.ErroHandler;
 import br.com.contatos.infraestrutura.webservice.interfaces.SucessoHandler;
 import br.com.contatos.infraestrutura.webservice.retorno.OcorrenciaRetorno;
 import br.com.contatos.infraestrutura.webservice.resource.OcorrenciaService;
-import br.com.contatos.modelo.entidade.ocorrencia.Ocorrencia;
+import br.com.contatos.modelo.entidade.localizacao.Localizacao;
 import br.com.contatos.visao.principal.PrincipalActivity;
 import retrofit2.Call;
 
@@ -164,7 +167,7 @@ public class LocalizaActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void enviarLocalizacao(View view){
-        Ocorrencia ocorrencia = new Ocorrencia();
+        Localizacao ocorrencia = new Localizacao();
         ocorrencia.setId_menber(idUsuario);
         ocorrencia.setLatitude(Double.valueOf(txtLatitude.getText().toString()));
         ocorrencia.setLogitude(Double.valueOf(txtLongitude.getText().toString()));
@@ -173,7 +176,7 @@ public class LocalizaActivity extends AppCompatActivity implements AdapterView.O
         OcorrenciaService service = ServiceGenerator.createService(OcorrenciaService.class);
         Call<OcorrenciaRetorno> call = service.enviarOcorrencia(ocorrencia);
 
-        AcaoGravarOcorrencia callGravar = new AcaoGravarOcorrencia(this,this);
+        AcaoGravarLocalizacao callGravar = new AcaoGravarLocalizacao(this,this);
         callGravar.execute(call);
 
     }
@@ -185,6 +188,8 @@ public class LocalizaActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void sucesso(String mensagem) {
+        gravaLocalizacao();
+
         AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
         dialogo.setTitle(getString(R.string.sucesso));
         dialogo.setMessage(mensagem);
@@ -198,8 +203,24 @@ public class LocalizaActivity extends AppCompatActivity implements AdapterView.O
         dialogo.show();
     }
 
+    private void gravaLocalizacao(){
+        Localizacao localizacao = new Localizacao();
+        localizacao.setId_menber(idUsuario);
+        localizacao.setLatitude(Double.valueOf(txtLatitude.getText().toString()));
+        localizacao.setLogitude(Double.valueOf(txtLongitude.getText().toString()));
+        localizacao.setOcurrency(String.valueOf(spnClima.getSelectedItem()));
+
+        IControladorLocalizacao controladorLocalizacao = new ControladorLocalizacao(this);
+        long idLocaliza = controladorLocalizacao.inserLocalizacao(localizacao);
+
+        Toast.makeText(this,"A localizacao é: " + idLocaliza, Toast.LENGTH_LONG).show();
+
+    }
+
     private void chamaTelaPrincipal(){
         Intent intent = new Intent(this, PrincipalActivity.class);
+        intent.putExtra(Constantes.ID_USUARIO_PARAMETRO,idUsuario);
+        intent.putExtra(Constantes.ID_TOKEN_PARAMETRO,token);
         startActivity(intent);
     }
 }

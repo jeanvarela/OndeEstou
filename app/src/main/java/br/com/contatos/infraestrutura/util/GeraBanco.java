@@ -3,6 +3,8 @@ package br.com.contatos.infraestrutura.util;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import br.com.contatos.modelo.entidade.localizacao.LocalizacaoSQLHelper;
 import br.com.contatos.modelo.entidade.usuario.UsuarioSQLHelper;
 
 /**
@@ -17,6 +19,7 @@ public class GeraBanco extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(UsuarioSQLHelper.geraTabela());
+        sqLiteDatabase.execSQL(LocalizacaoSQLHelper.geraTabela());
     }
 
     @Override

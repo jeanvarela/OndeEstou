@@ -1,4 +1,4 @@
-package br.com.contatos.controlador;
+package br.com.contatos.controlador.usuario;
 
 import android.content.Context;
 
