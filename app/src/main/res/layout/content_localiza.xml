@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_cadastro"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0px"
+    android:paddingLeft="5px"
+    android:paddingRight="5px"
+    android:paddingTop="5px"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".visao.usuario.CadastroUsuario"
+    tools:showIn="@layout/activity_cadastro">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="35dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/labelNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/clima"/>
+
+           <Spinner
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/spnClimaAtual"
+               android:layout_below="@+id/labelNome"/>
+
+           <TextView
+                android:id="@+id/labelLatitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spnClimaAtual"
+                android:text="@string/labelLatitude"/>
+
+           <EditText
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/txtLatitude"
+               android:enabled="false"
+               android:layout_below="@+id/labelLatitude"/>
+
+           <TextView
+                android:id="@+id/labelLongitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtLatitude"
+                android:text="@string/labelLongitude"/>
+
+           <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtLongitude"
+                android:enabled="false"
+                android:layout_below="@+id/labelLongitude"/>
+        </RelativeLayout>
+    </ScrollView>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/enviarLocalizacao"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:id="@+id/btnCadastrar"
+        android:onClick="enviarLocalizacao"/>
+</RelativeLayout>

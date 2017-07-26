@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Contatos</string>
+    <string name="login">Logar</string>
+    <string name="senha">Senha</string>
+    <string name="naoCadastrado">Não é cadastrado?</string>
+    <string name="title_activity_cadastro">Cadastro</string>
+    <string name="nome">Nome</string>
+    <string name="email">Email</string>
+    <string name="senhaConfirmacao">Senha Confirmação</string>
+    <string name="enviarLocalizacao">Enviar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="cadastro">Cadastro</string>
+    <string name="sucesso">Sucesso</string>
+    <string name="ok">OK</string>
+    <string name="telefone">Telefone</string>
+    <string name="localizacao">Localização</string>
+    <string name="contato">Contato</string>
+    <string name="novo">Novo</string>
+    <string name="atualizar">Atualizar</string>
+    <string name="erro">Erro</string>
+    <string name="informar_localizacao">Informar Localização</string>
+    <string name="emailNaoPreenchido">O email deve ser  preenchido</string>
+    <string name="senhaNaoPreenchida">A senha deve ser preenchida</string>
+    <string name="nomeNaoPreenchido">O nome deve ser preenchido</string>
+    <string name="telefoneNaoPreenchido">O telefone deve ser preenchido</string>
+    <string name="telefoneInvalido">Telefone Inválido</string>
+    <string name="senhaConfirmacaoNaoPreenchida">A senha de confirmação deve sr preenchida</string>
+    <string name="senhaDiferenteSenhaConfirmacao">A senha e a senha de confirmação devem ser iguais</string>
+    <string name="emailInvalido">E-maiil Invélido</string>
+    <string name="clima">Clima</string>
+    <string name="labelLatitude">Latitude</string>
+    <string name="labelLongitude">Longitude</string>
+    <string name="cadastrar">Cadastrar</string>
+
+
+    <string name="title_activity_principal">Onde Estou</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="semConexao">Aparelho não conectado a internet. Para realizar a operação é necessário que o aparelho possua conexão com a internet.</string>
+    <string name="title_activity_usuario">Cadastro Usuário</string>
+    <string name="title_activity_localiza">Informa Localização</string>
+
+</resources>
