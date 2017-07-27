@@ -1,22 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="5px"
-    android:paddingRight="5px"
-    android:minHeight="?android:attr/listPreferredItemHeight" >
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:padding="10dip" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:id="@+id/txtClima"/>
+                      <TextView android:id="@+id/labelClima"
+                                android:layout_width="70dip"
+                                android:textStyle="bold"
+                                android:layout_height="wrap_content"
+                                android:text="@string/clima" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtLatitude"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"/>
+                      <TextView android:id="@+id/clima"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_toRightOf="@id/labelClima" />
+
+                      <TextView android:id="@+id/labelLatitude"
+                                android:layout_width="70dip"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/clima"
+                                android:textStyle="bold"
+                                android:gravity="left"
+                                android:text="@string/labelLatitude" />
+
+                      <TextView android:id="@+id/latitude"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@id/labelLatitude"
+                                android:layout_toRightOf="@id/labelLatitude"/>
+
+                      <TextView android:id="@+id/labelLongitude"
+                                android:layout_width="70dip"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/labelLatitude"
+                                android:textStyle="bold"
+                                android:gravity="left"
+                                android:text="@string/labelLongitude" />
+
+                      <TextView android:id="@+id/longitude"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@id/labelLongitude"
+                                android:layout_toRightOf="@id/labelLongitude"/>
 
 </RelativeLayout>

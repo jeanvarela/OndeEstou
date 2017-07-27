@@ -28,6 +28,7 @@ import br.com.contatos.controlador.localizacao.ControladorLocalizacao;
 import br.com.contatos.controlador.localizacao.IControladorLocalizacao;
 import br.com.contatos.infraestrutura.util.Constantes;
 import br.com.contatos.infraestrutura.util.MessageUtil;
+import br.com.contatos.infraestrutura.util.Util;
 import br.com.contatos.infraestrutura.webservice.ServiceGenerator;
 import br.com.contatos.infraestrutura.webservice.acao.AcaoGravarLocalizacao;
 import br.com.contatos.infraestrutura.webservice.interfaces.ErroHandler;
@@ -49,7 +50,6 @@ public class LocalizaActivity extends AppCompatActivity implements AdapterView.O
 
     private EditText txtLatitude;
     private EditText txtLongitude;
-    private String provider;
 
     private long   idUsuario;
     private String token;
@@ -167,18 +167,21 @@ public class LocalizaActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void enviarLocalizacao(View view){
-        Localizacao ocorrencia = new Localizacao();
-        ocorrencia.setId_menber(idUsuario);
-        ocorrencia.setLatitude(Double.valueOf(txtLatitude.getText().toString()));
-        ocorrencia.setLogitude(Double.valueOf(txtLongitude.getText().toString()));
-        ocorrencia.setOcurrency(String.valueOf(spnClima.getSelectedItem()));
+        if (Util.verificaConectado(this)) {
+            Localizacao ocorrencia = new Localizacao();
+            ocorrencia.setId_menber(idUsuario);
+            ocorrencia.setLatitude(Double.valueOf(txtLatitude.getText().toString()));
+            ocorrencia.setLogitude(Double.valueOf(txtLongitude.getText().toString()));
+            ocorrencia.setOcurrency(String.valueOf(spnClima.getSelectedItem()));
 
-        OcorrenciaService service = ServiceGenerator.createService(OcorrenciaService.class);
-        Call<OcorrenciaRetorno> call = service.enviarOcorrencia(ocorrencia);
+            OcorrenciaService service = ServiceGenerator.createService(OcorrenciaService.class);
+            Call<OcorrenciaRetorno> call = service.enviarOcorrencia(ocorrencia);
 
-        AcaoGravarLocalizacao callGravar = new AcaoGravarLocalizacao(this,this);
-        callGravar.execute(call);
-
+            AcaoGravarLocalizacao callGravar = new AcaoGravarLocalizacao(this, this);
+            callGravar.execute(call);
+        } else{
+           MessageUtil.exibeMensagem(getString(R.string.semConexao),getString(R.string.erro),this);
+        }
     }
 
     @Override
@@ -212,8 +215,6 @@ public class LocalizaActivity extends AppCompatActivity implements AdapterView.O
 
         IControladorLocalizacao controladorLocalizacao = new ControladorLocalizacao(this);
         long idLocaliza = controladorLocalizacao.inserLocalizacao(localizacao);
-
-        Toast.makeText(this,"A localizacao é: " + idLocaliza, Toast.LENGTH_LONG).show();
 
     }
 

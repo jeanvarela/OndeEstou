@@ -57,7 +57,7 @@ public class PrincipalActivity extends AppCompatActivity
         token = intent.getStringExtra(Constantes.ID_TOKEN_PARAMETRO);
 
         ListView lista = (ListView)findViewById(R.id.lista);
-        
+
         adapter = new LocalizacaoAdapter(this,atualizaLista());
         lista.setAdapter(adapter);
     }

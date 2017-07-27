@@ -47,11 +47,13 @@ public class LocalizacaoAdapter extends BaseAdapter {
 
         View linha = LayoutInflater.from(contexto).inflate(R.layout.item,null);
 
-        TextView txtClima = (TextView) linha.findViewById(R.id.txtClima);
-        TextView txtLatitude = (TextView) linha.findViewById(R.id.txtLatitude);
+        TextView txtClima = (TextView) linha.findViewById(R.id.clima);
+        TextView txtLatitude = (TextView) linha.findViewById(R.id.latitude);
+        TextView txtLongitude = (TextView) linha.findViewById(R.id.longitude);
 
         txtClima.setText(localizacao.getOcurrency());
         txtLatitude.setText(String.valueOf(localizacao.getLatitude()));
+        txtLongitude.setText(String.valueOf(localizacao.getLogitude()));
 
         return linha;
     }
