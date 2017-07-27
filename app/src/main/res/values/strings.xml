@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Contatos</string>
+    <string name="app_name">Onde Estou</string>
     <string name="login">Logar</string>
     <string name="senha">Senha</string>
     <string name="naoCadastrado">Não é cadastrado?</string>

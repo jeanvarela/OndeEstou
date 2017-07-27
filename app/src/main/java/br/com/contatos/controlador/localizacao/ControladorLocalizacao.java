@@ -20,11 +20,17 @@ public class ControladorLocalizacao implements IControladorLocalizacao{
         this.repositorioLocalizacao = new RepositorioLocalizacao(context);
     }
 
+    /**
+     * Função: gravar uma nova localização
+     */
    @Override
     public long inserLocalizacao(Localizacao localizacao) {
         return repositorioLocalizacao.adicionarLocalizacao(localizacao);
     }
 
+    /**
+     * Função: recupera a lista de localizações inserida por um usuário
+     */
     @Override
     public List<Localizacao> recuperaListaLocalizacoes(long idUsuario) {
         return repositorioLocalizacao.recuperaLocalizacoes(idUsuario);

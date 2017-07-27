@@ -14,9 +14,8 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 /**
- * Created by jean on 25/07/2017.
+ * Função: Classe responsavél por recuperar os dados do usuário na API rest
  */
-
 public class AcaoRecuperaDadosUsuario extends AsyncTask<Call<DadosUsuarioRetorno>,Void,Response<DadosUsuarioRetorno>> {
 
     private Usuario usuario;

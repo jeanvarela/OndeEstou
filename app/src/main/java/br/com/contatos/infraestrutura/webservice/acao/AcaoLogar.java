@@ -17,9 +17,8 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 /**
- * Created by jean on 25/07/2017.
+ * Função: Classe responsavél por autentica o login/senha na API rest
  */
-
 public class AcaoLogar extends AsyncTask<Call<AccessTokenRetorno>,Void,Response<AccessTokenRetorno>> {
 
     private LogarHandler       logarHandler;

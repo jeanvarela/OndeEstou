@@ -78,36 +78,30 @@ public class LocalizaActivity extends AppCompatActivity implements LocationListe
         idUsuario = intent.getLongExtra(Constantes.ID_USUARIO_PARAMETRO, -1);
         token = intent.getStringExtra(Constantes.ID_TOKEN_PARAMETRO);
 
-        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5, 5, this);
-        Location location = getLastKnownLocation();
-        if (location != null) {
-            onLocationChanged(location);
-        }
+        capturaPosicaoAtual();
     }
 
-    private Location getLastKnownLocation() {
+    private void capturaPosicaoAtual() {
         locationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
         List<String> providers = locationManager.getProviders(true);
-        Location bestLocation = null;
+        Location localizacaoAtual = null;
 
         for (String provider : providers) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             }
-            Location l = locationManager.getLastKnownLocation(provider);
-            if (l == null) {
+            Location location = locationManager.getLastKnownLocation(provider);
+            if (location == null) {
                 continue;
             }
-            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
-                // Found best last known location: %s", l);
-                bestLocation = l;
+            if (localizacaoAtual == null || location.getAccuracy() < localizacaoAtual.getAccuracy()) {
+                localizacaoAtual = location;
             }
         }
-        return bestLocation;
+
+        if (localizacaoAtual != null) {
+            onLocationChanged(localizacaoAtual);
+        }
     }
 
     @Override
@@ -116,6 +110,9 @@ public class LocalizaActivity extends AppCompatActivity implements LocationListe
         locationManager.removeUpdates(this);
     }
 
+    /**
+     * Função: configura as opções de clima que o usuário pode escolher
+     */
     private void configuraSpinner(){
         List<String> categories = new ArrayList<String>();
         categories.add("Sol");
@@ -128,7 +125,9 @@ public class LocalizaActivity extends AppCompatActivity implements LocationListe
     }
 
 
-
+    /*
+     * Função: ação do botao de enviar
+     */
     public void enviarLocalizacao(View view){
         if (Util.verificaConectado(this)) {
             Localizacao ocorrencia = new Localizacao();
@@ -147,6 +146,9 @@ public class LocalizaActivity extends AppCompatActivity implements LocationListe
         }
     }
 
+    /*
+     * Função: esse metodos é chamado
+     */
     @Override
     public void erro(String mensagem) {
         MessageUtil.exibeMensagem(mensagem,getString(R.string.erro),this);
@@ -177,7 +179,7 @@ public class LocalizaActivity extends AppCompatActivity implements LocationListe
         localizacao.setOcurrency(String.valueOf(spnClima.getSelectedItem()));
 
         IControladorLocalizacao controladorLocalizacao = new ControladorLocalizacao(this);
-        long idLocaliza = controladorLocalizacao.inserLocalizacao(localizacao);
+        controladorLocalizacao.inserLocalizacao(localizacao);
 
     }
 

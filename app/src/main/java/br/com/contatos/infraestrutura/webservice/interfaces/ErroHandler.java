@@ -3,7 +3,7 @@ package br.com.contatos.infraestrutura.webservice.interfaces;
 import okhttp3.ResponseBody;
 
 /**
- * Created by jean on 25/07/2017.
+ * Interface responsável por definir o método para retornar a mensagem de erro caso ocorra algum erro
  */
 
 public interface ErroHandler {

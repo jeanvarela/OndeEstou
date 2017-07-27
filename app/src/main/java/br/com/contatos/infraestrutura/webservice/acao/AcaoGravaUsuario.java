@@ -14,9 +14,8 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 /**
- * Created by jean on 25/07/2017.
+ * Função: Classe responsavél grava o registro do usuário na API rest
  */
-
 public class AcaoGravaUsuario extends AsyncTask<Call<AccessTokenRetorno>,Void,Response<AccessTokenRetorno>> {
 
     private AccessTokenHandler accessTokenHandler;

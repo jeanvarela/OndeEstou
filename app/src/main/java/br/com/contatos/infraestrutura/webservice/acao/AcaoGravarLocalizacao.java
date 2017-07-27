@@ -15,7 +15,8 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 /**
- * Created by jean on 26/07/2017.
+ * Função: classe responsavél por realizar comunicação com API Rest para conseguir enviar uma localização
+ *
  */
 
 public class AcaoGravarLocalizacao extends AsyncTask<Call<OcorrenciaRetorno>,Void,Response<OcorrenciaRetorno>> {

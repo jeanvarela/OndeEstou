@@ -1,7 +1,8 @@
 package br.com.contatos.infraestrutura.webservice.interfaces;
 
 /**
- * Created by jean on 26/07/2017.
+ * Interface responsável por definir o método para retornar a mensagem de sucesso caso
+ * a chamada ao método da API seja finalizada com sucesso.
  */
 
 public interface SucessoHandler {

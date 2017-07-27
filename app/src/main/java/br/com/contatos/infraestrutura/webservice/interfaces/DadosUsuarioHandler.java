@@ -3,7 +3,7 @@ package br.com.contatos.infraestrutura.webservice.interfaces;
 import br.com.contatos.modelo.entidade.usuario.Usuario;
 
 /**
- * Created by jean on 25/07/2017.
+ * Interface responsável por definir o método utilizado para retornar os dados do usuário
  */
 
 public interface DadosUsuarioHandler {

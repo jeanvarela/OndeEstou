@@ -3,7 +3,7 @@ package br.com.contatos.infraestrutura.webservice.interfaces;
 import br.com.contatos.infraestrutura.webservice.retorno.AccessTokenRetorno;
 
 /**
- * Created by jean on 25/07/2017.
+ * Interface responsável por definir o método utilizado por retornar o token do usuário
  */
 
 public interface AccessTokenHandler {
